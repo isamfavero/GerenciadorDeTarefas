@@ -1,0 +1,469 @@
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-border: #1f2430;
+  --color-border-soft: #d7dae0;
+  --color-text: #111318;
+  --color-text-muted: #6b7280;
+  --color-black: #000000;
+
+  --priority-alta-bg: #ffe3e3;
+  --priority-alta-text: #c92a2a;
+  --priority-media-bg: #fff3bf;
+  --priority-media-text: #997404;
+  --priority-baixa-bg: #d3f9d8;
+  --priority-baixa-text: #2b8a3e;
+
+  --radius: 10px;
+  --radius-pill: 999px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: var(--spacing-5) var(--spacing-4);
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.app-header {
+  text-align: center;
+  margin-bottom: var(--spacing-5);
+}
+
+.app-header h1 {
+  margin: 0 0 var(--spacing-3);
+  font-size: 2.25rem;
+  font-weight: 800;
+}
+
+.google-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+}
+
+.google-status {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ---------- Botões (base) ---------- */
+
+button {
+  font-family: inherit;
+}
+
+.btn-dark,
+.btn-outline {
+  border-radius: var(--radius);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Botões pretos: NUNCA invertem para branco no hover, apenas escurecem levemente */
+.btn-dark {
+  background: var(--color-black);
+  border: 1px solid var(--color-black);
+  color: #fff;
+}
+
+.btn-dark:hover {
+  background: #262626;
+  border-color: #262626;
+}
+
+/* Botões brancos: viram pretos no hover */
+.btn-outline {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-outline:hover {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: #fff;
+}
+
+/* ---------- Formulário de nova tarefa ---------- */
+
+.task-form-section,
+.task-list-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.field {
+  margin-bottom: var(--spacing-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field-row {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.field-row.bottom-row {
+  align-items: flex-end;
+}
+
+.date-field {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+input,
+textarea,
+select {
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-text);
+}
+
+input[type="date"] {
+  border-radius: var(--radius-pill);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #adb0b8;
+}
+
+.btn-primary {
+  align-self: flex-end;
+  margin-bottom: 1px;
+}
+
+/* ---------- Lista de tarefas ---------- */
+
+.task-list-section h2 {
+  margin: 0 0 var(--spacing-3);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.search-bar {
+  position: relative;
+  margin-bottom: var(--spacing-3);
+}
+
+.search-bar input {
+  width: 100%;
+  padding-left: 36px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  display: flex;
+}
+
+.toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.filter-label {
+  font-weight: 700;
+}
+
+.filters {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.filter-btn {
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+/* Pendentes/Concluídas (brancos): viram pretos no hover */
+.filter-btn:hover {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: #fff;
+}
+
+/* Aba ativa (preta): nunca inverte para branco, só escurece um pouco */
+.filter-btn.active {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: #fff;
+}
+
+.filter-btn.active:hover {
+  background: #262626;
+  border-color: #262626;
+  color: #fff;
+}
+
+.ai-priority-status {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--spacing-3);
+  min-height: 1em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--spacing-3) var(--spacing-3);
+}
+
+/* Checkbox quadrado, no estilo do protótipo */
+.task-status-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  border: 2px solid var(--color-black);
+  border-radius: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: #fff;
+  position: relative;
+}
+
+.task-status-checkbox:checked {
+  background: var(--color-black);
+}
+
+.task-status-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: var(--color-black);
+}
+
+.task-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.task-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.task-description {
+  margin: var(--spacing-1) 0 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-1);
+}
+
+.task-due-date {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.task-priority-badge {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.task-priority-badge:not(:empty) {
+  display: inline-block;
+}
+
+.task-priority-badge.priority-alta {
+  background: var(--priority-alta-bg);
+  color: var(--priority-alta-text);
+}
+
+.task-priority-badge.priority-media {
+  background: var(--priority-media-bg);
+  color: var(--priority-media-text);
+}
+
+.task-priority-badge.priority-baixa {
+  background: var(--priority-baixa-bg);
+  color: var(--priority-baixa-text);
+}
+
+/* ---------- Ações da tarefa (lado direito) ---------- */
+
+.task-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.btn-google-add {
+  width: 100%;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.actions-row {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.actions-row button {
+  flex: 1;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------- Modo de edição ---------- */
+
+.task-edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.task-edit .field {
+  margin-bottom: 0;
+}
+
+.task-edit label {
+  font-size: 0.8rem;
+}
+
+.task-edit input {
+  font-size: 0.9rem;
+  padding: 6px 10px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--spacing-4) 0;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 560px) {
+  .field-row.bottom-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary {
+    align-self: stretch;
+  }
+
+  .task-item {
+    flex-direction: column;
+  }
+
+  .task-item-actions {
+    width: 100%;
+  }
+
+  .toolbar-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    justify-content: space-between;
+  }
+}
