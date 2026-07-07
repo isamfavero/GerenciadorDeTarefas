@@ -17,7 +17,7 @@ const aiPriorityStatus = document.getElementById("ai-priority-status");
 let currentFilter = "todas";
 let currentSearch = "";
 
-// ---------- Persistência (localStorage) ----------
+// ---------- persistência (localStorage) ----------
 
 function getTasks() {
   const raw = localStorage.getItem(STORAGE_KEY);
@@ -28,7 +28,7 @@ function saveTasks(tasks) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 }
 
-// ---------- CRUD ----------
+// ---------- crud ----------
 
 function addTask({ title, description, dueDate, status }) {
   const tasks = getTasks();
@@ -69,7 +69,7 @@ function deleteTask(id) {
   saveTasks(tasks);
 }
 
-// ---------- Renderização ----------
+// ---------- renderização ----------
 
 function render() {
   const tasks = getTasks();
@@ -120,8 +120,7 @@ function renderTaskItem(task) {
 
   node.querySelector(".task-title").textContent = task.title;
 
-  // Descrição só ocupa espaço na tela quando existe (para a prioridade
-  // "subir" e ficar logo abaixo do título quando não há descrição)
+  // descrição só ocupa espaço na tela quando existe (para a prioridade "subir" e ficar logo abaixo do título quando não há descrição)
   const descriptionEl = node.querySelector(".task-description");
   if (task.description) {
     descriptionEl.textContent = task.description;
@@ -138,8 +137,7 @@ function renderTaskItem(task) {
     dueDateEl.textContent = "";
   }
 
-  // Prioridade sempre aparece ao lado do prazo. Se não houver descrição,
-  // essa linha (prazo + prioridade) já fica logo abaixo do título.
+  // prioridade sempre aparece ao lado do prazo. Se não houver descrição, essa linha (prazo + prioridade) já fica logo abaixo do título.
   const priorityEl = node.querySelector(".task-priority-badge");
   priorityEl.className = "task-priority-badge";
   if (task.aiPriority) {
@@ -149,7 +147,7 @@ function renderTaskItem(task) {
     priorityEl.textContent = "";
   }
 
-  // Some com a linha inteira (prazo + prioridade) se não houver nada pra mostrar
+  // some com a linha inteira (prazo + prioridade) se não houver nada pra mostrar
   const metaEl = node.querySelector(".task-meta");
   if (!task.dueDate && !task.aiPriority) {
     metaEl.classList.add("hidden");
@@ -157,7 +155,7 @@ function renderTaskItem(task) {
     metaEl.classList.remove("hidden");
   }
 
-  // ---------- Edição da tarefa ----------
+  // ---------- edição da tarefa ----------
   const viewEl = node.querySelector(".task-view");
   const editEl = node.querySelector(".task-edit");
   const editTitleInput = node.querySelector(".edit-title");
@@ -169,7 +167,7 @@ function renderTaskItem(task) {
   const btnCancel = node.querySelector(".btn-cancel");
 
   btnEdit.addEventListener("click", () => {
-    // Preenche o formulário de edição com os valores atuais da tarefa
+    // preenche o formulário de edição com os valores atuais da tarefa
     editTitleInput.value = task.title;
     editDescriptionInput.value = task.description || "";
     editDueDateInput.value = task.dueDate || "";
@@ -182,7 +180,7 @@ function renderTaskItem(task) {
   });
 
   btnCancel.addEventListener("click", () => {
-    // Descarta qualquer alteração e volta pro modo de visualização
+    // descarta qualquer alteração e volta pro modo de visualização
     render();
   });
 
@@ -226,7 +224,7 @@ function isOverdue(isoDate) {
   return new Date(isoDate) < today;
 }
 
-// ---------- Eventos ----------
+// ---------- eventos ----------
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -257,7 +255,7 @@ searchInput.addEventListener("input", () => {
   render();
 });
 
-// Pede à IA (back-end) uma sugestão de prioridade para as tarefas pendentes
+// pede à IA (back-end) uma sugestão de prioridade para as tarefas pendentes
 aiPriorityBtn.addEventListener("click", () => {
   const tasks = getTasks().filter((task) => task.status === "pendente");
 
