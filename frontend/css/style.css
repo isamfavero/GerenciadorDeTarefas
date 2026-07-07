@@ -1,7 +1,4 @@
 :root {
-  /* Força os controles nativos (date picker, etc) a usarem o tema claro,
-     evitando que o iOS/Android desenhe o campo de data em modo escuro
-     (o que fazia o campo aparecer como um retângulo cinza "vazio"). */
   color-scheme: light;
 
   --color-bg: #ffffff;
@@ -32,8 +29,6 @@
   box-sizing: border-box;
 }
 
-/* Rede de segurança: nenhum desses elementos deve conseguir forçar a
-   página a ficar mais larga que a tela. */
 input,
 button,
 select,
@@ -45,17 +40,10 @@ img {
 
 html,
 body {
-  /* Evita rolagem horizontal indesejada em telas estreitas, que às vezes
-     aparece como uma "linha" vertical sobrando na lateral da página. */
   overflow-x: hidden;
   width: 100%;
 }
 
-/* Rede de segurança contra iframes escondidos que as bibliotecas do Google
-   (apis.google.com/js/api.js e accounts.google.com/gsi/client) às vezes
-   injetam no <body> para o fluxo de login. Isso não afeta o pop-up de
-   login em si (que abre em outra janela), só impede que algum elemento
-   auxiliar escondido apareça com borda/linha visível na página. */
 body > iframe {
   border: none !important;
 }
@@ -74,7 +62,7 @@ body {
   padding: var(--spacing-5) var(--spacing-4);
 }
 
-/* ---------- Cabeçalho ---------- */
+/* ---------- cabeçalho ---------- */
 
 .app-header {
   text-align: center;
@@ -105,7 +93,7 @@ body {
   color: var(--color-text);
 }
 
-/* ---------- Botões (base) ---------- */
+/* ---------- botões (base) ---------- */
 
 button {
   font-family: inherit;
@@ -122,7 +110,7 @@ button {
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-/* Botões pretos: NUNCA invertem para branco no hover, apenas escurecem levemente */
+/* botões pretos: nunca invertem para branco no hover, apenas escurecem levemente */
 .btn-dark {
   background: var(--color-black);
   border: 1px solid var(--color-black);
@@ -134,7 +122,7 @@ button {
   border-color: #262626;
 }
 
-/* Botões brancos: viram pretos no hover */
+/* botões brancos: viram pretos no hover */
 .btn-outline {
   background: #fff;
   border: 1px solid var(--color-border);
@@ -147,7 +135,7 @@ button {
   color: #fff;
 }
 
-/* ---------- Formulário de nova tarefa ---------- */
+/* ---------- formulário de nova tarefa ---------- */
 
 .task-form-section,
 .task-list-section {
@@ -202,9 +190,6 @@ select {
 
 input[type="date"] {
   border-radius: var(--radius-pill);
-  /* O Safari/iOS desenha o controle nativo de data com sua própria altura
-     e fundo; sem isso ele pode parecer "vazio"/cinza, sem texto nem ícone,
-     dentro de um input com border-radius em pílula. */
   -webkit-appearance: none;
   appearance: none;
   min-height: 42px;
@@ -238,7 +223,7 @@ textarea::placeholder {
   margin-bottom: 1px;
 }
 
-/* ---------- Lista de tarefas ---------- */
+/* ---------- lista de tarefas ---------- */
 
 .task-list-section h2 {
   margin: 0 0 var(--spacing-3);
@@ -304,14 +289,14 @@ textarea::placeholder {
   color: var(--color-text);
 }
 
-/* Pendentes/Concluídas (brancos): viram pretos no hover */
+/* pendentes/concluídas (brancos): viram pretos no hover */
 .filter-btn:hover {
   background: var(--color-black);
   border-color: var(--color-black);
   color: #fff;
 }
 
-/* Aba ativa (preta): nunca inverte para branco, só escurece um pouco */
+/* aba ativa (preta): nunca inverte para branco, só escurece um pouco */
 .filter-btn.active {
   background: var(--color-black);
   border-color: var(--color-black);
@@ -449,7 +434,7 @@ textarea::placeholder {
   color: var(--priority-baixa-text);
 }
 
-/* ---------- Ações da tarefa (lado direito) ---------- */
+/* ---------- ações da tarefa (lado direito) ---------- */
 
 .task-item-actions {
   display: flex;
@@ -480,7 +465,7 @@ textarea::placeholder {
   display: none !important;
 }
 
-/* ---------- Modo de edição ---------- */
+/* ---------- modo de edição ---------- */
 
 .task-edit {
   display: flex;
@@ -507,7 +492,7 @@ textarea::placeholder {
   padding: var(--spacing-4) 0;
 }
 
-/* ---------- Responsivo ---------- */
+/* ---------- responsivo ---------- */
 
 @media (max-width: 560px) {
   .field-row.bottom-row {
@@ -547,7 +532,7 @@ textarea::placeholder {
   }
 }
 
-/* Ajuste fino para telas bem estreitas (ex: iPhone SE, ~360-390px) */
+/* ajuste fino para telas bem estreitas*/
 @media (max-width: 400px) {
   .app {
     padding: var(--spacing-4) var(--spacing-2);
@@ -567,9 +552,7 @@ textarea::placeholder {
   }
 }
 
-/* Faixa intermediária (tablets pequenos / celular deitado): a coluna fixa
-   de 240px de ações não cabe bem ao lado do conteúdo da tarefa, então
-   empilha os itens verticalmente como no modo mobile. */
+/* faixa intermediária (tablets pequenos / celular deitado) */
 @media (min-width: 561px) and (max-width: 680px) {
   .task-item {
     flex-direction: column;
