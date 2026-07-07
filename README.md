@@ -42,3 +42,12 @@ O projeto está hospedado no servidor da Vercel (front-end) e também hospedado 
 **https://gerenciador-de-tarefas-chi-khaki.vercel.app/**
 
 > **IMPORTANTE:** Ao conectar sua conta Google aparecerá uma mensagem de aviso dizendo "O Google não verificou esse projeto". Clique em "Avançado" e depois clique em "Acessar gerenciador-de-tarefas-chi-khaki.vercel.app".
+
+## Principais Decisões Tomadas 
+
+- Node.js no backend só para proteger a chave de ia
+- localStorage em vez de banco de dados estruturado
+- Separação clara de responsabilidade entre arquivos
+- Integração com Google Agenda direto do frontend (sem passar pelo backend)
+- Uso de variáveis de ambiente (.env) para armazenamento de chave de API
+-  Deploy separado (Render + Vercel) em vez de um único serviço
