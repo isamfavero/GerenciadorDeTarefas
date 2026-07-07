@@ -278,15 +278,18 @@ textarea::placeholder {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-}
-
-.filter-label {
-  font-weight: 700;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .filters {
   display: flex;
   gap: var(--spacing-1);
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-weight: 700;
 }
 
 .filter-btn {
@@ -531,6 +534,16 @@ textarea::placeholder {
 
   .filter-group {
     justify-content: space-between;
+  }
+
+  .filters {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter-btn {
+    flex: 1;
+    text-align: center;
   }
 }
 
