@@ -11,4 +11,4 @@ const GOOGLE_SCOPE = "https://www.googleapis.com/auth/calendar.events";
 // Endereço que descreve a API do Google Calendar
 const GOOGLE_DISCOVERY_DOC =
   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest";
-const BACKEND_URL = "https://gerenciadordetarefas-1-cfnc.onrender.com";
+const BACKEND_URL = "https://gerenciadordetarefas-2-dx6e.onrender.com";
