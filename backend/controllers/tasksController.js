@@ -1,7 +1,4 @@
-// NOTA: o desafio pede armazenamento via localStorage (no navegador),
-// então esta camada de back-end é opcional/apoio (ex.: futura sincronização,
-// validações de servidor, ou API de calendário). Aqui fica um placeholder
-// simples em memória para o back-end não ficar vazio.
+// o armazenamento funciona via localStorage (no navegador). Aqui fica um placeholder simples em memória para o back-end não ficar vazio.
 
 let tasks = [];
 
