@@ -1,4 +1,9 @@
 :root {
+  /* Força os controles nativos (date picker, etc) a usarem o tema claro,
+     evitando que o iOS/Android desenhe o campo de data em modo escuro
+     (o que fazia o campo aparecer como um retângulo cinza "vazio"). */
+  color-scheme: light;
+
   --color-bg: #ffffff;
   --color-surface: #ffffff;
   --color-border: #1f2430;
@@ -27,6 +32,14 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  /* Evita rolagem horizontal indesejada em telas estreitas, que às vezes
+     aparece como uma "linha" vertical sobrando na lateral da página. */
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -36,6 +49,7 @@ body {
 
 .app {
   max-width: 760px;
+  width: 100%;
   margin: 0 auto;
   padding: var(--spacing-5) var(--spacing-4);
 }
@@ -49,7 +63,9 @@ body {
 
 .app-header h1 {
   margin: 0 0 var(--spacing-3);
-  font-size: 2.25rem;
+  /* Reduz o tamanho automaticamente em telas pequenas em vez de forçar
+     quebra de linha estranha ou estourar a largura. */
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
   font-weight: 800;
 }
 
@@ -57,7 +73,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-3);
+  gap: var(--spacing-2) var(--spacing-3);
+  flex-wrap: wrap;
+  text-align: center;
 }
 
 .google-status {
@@ -164,6 +182,30 @@ select {
 
 input[type="date"] {
   border-radius: var(--radius-pill);
+  /* O Safari/iOS desenha o controle nativo de data com sua própria altura
+     e fundo; sem isso ele pode parecer "vazio"/cinza, sem texto nem ícone,
+     dentro de um input com border-radius em pílula. */
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 42px;
+  line-height: 1.4;
+  background-color: #fff;
+}
+
+/* Garante que o texto (dia/mês/ano) e o ícone do calendário fiquem visíveis
+   e com a cor certa em vez de herdarem um tema escuro do sistema. */
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--color-text);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  cursor: pointer;
 }
 
 input::placeholder,
@@ -465,5 +507,25 @@ textarea::placeholder {
 
   .filter-group {
     justify-content: space-between;
+  }
+}
+
+/* Ajuste fino para telas bem estreitas (ex: iPhone SE, ~360-390px) */
+@media (max-width: 400px) {
+  .app {
+    padding: var(--spacing-4) var(--spacing-2);
+  }
+
+  .task-form-section,
+  .task-list-section {
+    padding: var(--spacing-3);
+  }
+
+  .actions-row {
+    flex-wrap: wrap;
+  }
+
+  .actions-row button {
+    flex: 1 1 45%;
   }
 }
