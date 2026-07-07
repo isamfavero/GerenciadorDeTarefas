@@ -21,7 +21,7 @@ async function suggestPriorities(req, res) {
     return res.status(400).json({ error: "Envie uma lista de tarefas." });
   }
 
-  // Monta um texto simples com as tarefas, para a IA entender o contexto
+  // monta um texto simples com as tarefas, para a IA entender o contexto
   const listaDeTarefas = tasks
     .map(function (task) {
       return (
