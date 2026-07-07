@@ -32,12 +32,32 @@
   box-sizing: border-box;
 }
 
+/* Rede de segurança: nenhum desses elementos deve conseguir forçar a
+   página a ficar mais larga que a tela. */
+input,
+button,
+select,
+textarea,
+svg,
+img {
+  max-width: 100%;
+}
+
 html,
 body {
   /* Evita rolagem horizontal indesejada em telas estreitas, que às vezes
      aparece como uma "linha" vertical sobrando na lateral da página. */
   overflow-x: hidden;
   width: 100%;
+}
+
+/* Rede de segurança contra iframes escondidos que as bibliotecas do Google
+   (apis.google.com/js/api.js e accounts.google.com/gsi/client) às vezes
+   injetam no <body> para o fluxo de login. Isso não afeta o pop-up de
+   login em si (que abre em outra janela), só impede que algum elemento
+   auxiliar escondido apareça com borda/linha visível na página. */
+body > iframe {
+  border: none !important;
 }
 
 body {
@@ -375,12 +395,16 @@ textarea::placeholder {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 700;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .task-description {
   margin: var(--spacing-1) 0 0;
   font-size: 0.95rem;
   color: var(--color-text);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .task-meta {
@@ -527,5 +551,18 @@ textarea::placeholder {
 
   .actions-row button {
     flex: 1 1 45%;
+  }
+}
+
+/* Faixa intermediária (tablets pequenos / celular deitado): a coluna fixa
+   de 240px de ações não cabe bem ao lado do conteúdo da tarefa, então
+   empilha os itens verticalmente como no modo mobile. */
+@media (min-width: 561px) and (max-width: 680px) {
+  .task-item {
+    flex-direction: column;
+  }
+
+  .task-item-actions {
+    width: 100%;
   }
 }
