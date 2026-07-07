@@ -1,9 +1,9 @@
 // ---------------------------------------------
-// Integração com o Google Calendar
+// integração com o google agenda
 // ---------------------------------------------
 
 
-// Variáveis que guardam o "estado" da integração com o Google
+// variáveis que guardam o "estado" da integração com o Google
 let googleClientReady = false; // true quando a API do Calendar terminou de carregar
 let googleAuthReady = false; // true quando o login do Google terminou de carregar
 let googleTokenClient = null; // objeto responsável por pedir o login ao usuário
@@ -12,7 +12,7 @@ let isConnectedToGoogle = false; // true depois que o usuário autoriza o app
 const connectButton = document.getElementById("google-connect-btn");
 const googleStatus = document.getElementById("google-status");
 
-// Passo 1: carregar o "gapi.client", que é quem faz as chamadas para a API
+// carregar o "gapi.client", que é quem faz as chamadas para a API
 function loadGapiClient() {
   gapi.load("client", function () {
     gapi.client
@@ -29,7 +29,7 @@ function loadGapiClient() {
   });
 }
 
-// Passo 2: preparar o login (OAuth) do Google
+//  preparar o login (OAuth) do google
 function loadGoogleAuth() {
   googleTokenClient = google.accounts.oauth2.initTokenClient({
     client_id: GOOGLE_CLIENT_ID,
@@ -40,7 +40,7 @@ function loadGoogleAuth() {
         return;
       }
 
-      // Se chegou até aqui, o usuário autorizou o app
+      // se chegou até aqui, o usuário autorizou o app
       isConnectedToGoogle = true;
       googleStatus.textContent = "Status: Conectado";
     },
@@ -49,7 +49,7 @@ function loadGoogleAuth() {
   googleAuthReady = true;
 }
 
-// Quando o usuário clica no botão "Conectar ao Google Calendar"
+// Quando o usuário clica no botão "Conectar ao Google Agenda"
 connectButton.addEventListener("click", function () {
   const aindaEstaCarregando = !googleClientReady || !googleAuthReady;
 
@@ -64,7 +64,7 @@ connectButton.addEventListener("click", function () {
   googleTokenClient.requestAccessToken();
 });
 
-// Passo 3: criar um evento na agenda a partir de uma tarefa
+// criar um evento na agenda a partir de uma tarefa
 function addTaskToGoogleCalendar(task) {
   if (!isConnectedToGoogle) {
     alert("Conecte-se ao Google Agenda antes de adicionar a tarefa.");
