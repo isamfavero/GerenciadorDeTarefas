@@ -26,7 +26,7 @@ Aplicação web de gerenciamento de tarefas com IA para sugestão de prioridades
 
 > **Nota:** caso opte por testar de forma local, é necessário criar uma pasta para o projeto e colocar as duas pastas disponíveis no repositório dentro da pasta do projeto.
 
-- **Front-end:** abra `frontend/index.html` no navegador, ou sirva com uma extensão como "Live Server".
+- **Front-end:** abra `frontend/index.html` no navegador, ou com uma extensão como "Live Server".
 - **Back-end:** é necessário iniciar o servidor Express do NodeJS para garantir o funcionamento da integração com a API Gemini. Crie um terminal no projeto e digite cada uma dessas linhas por vez:
 
 ```bash
